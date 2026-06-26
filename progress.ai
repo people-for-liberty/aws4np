@@ -1,0 +1,4 @@
+2026-06-26-09:45 Update - aws4np template repository created:
+- Public scaffold for 501(c)(3) AWS/Terraform adoption: speckit (`.specify/`), `start.ai`, `progress.ai`, `tu.keys.example`, `scripts/load-aws-env.sh`.
+- Minimal `aws/` stack with parameterized remote state (`backend_state.tf`); backend config via `config/backend.hcl` (gitignored).
+- Spec `001-repo-scaffold` documents first-time bootstrap. Fork from [aws4np](https://github.com/people-for-liberty/aws4np).

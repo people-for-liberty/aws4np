@@ -1,0 +1,37 @@
+Review `.specify/memory/constitution.md` and honor repo-specific workflow rules there.
+At the start of every session, run `scripts/check-session-prereqs.sh` (or document bypass with user approval).
+Run `terraform -chdir=aws plan -input=false -detailed-exitcode` to confirm no unexpected drift before discretionary work.
+Review `progress.ai` and active spec/tasks; confirm branch before implementing.
+Continuously update `progress.ai` with decisions, validation results, and outcomes.
+Load AWS credentials before any AWS/Terraform work: `eval "$(scripts/load-aws-env.sh)"`.
+Verify account with `aws sts get-caller-identity` — must match **your** nonprofit account (set expected ID in `tu.keys` or team docs).
+
+## Credentials (tu.keys)
+
+1. Copy `tu.keys.example` → `tu.keys` (gitignored).
+2. Add IAM access key for a **dedicated nonprofit user** (not root).
+3. Load: `eval "$(scripts/load-aws-env.sh)"` or `AWS_KEYS_FILE=/path/to/tu.keys eval "$(scripts/load-aws-env.sh)"`.
+
+## Speckit workflow
+
+1. **spec** — `specs/###-feature/spec.md` (`.specify/scripts/bash/create-new-feature.sh`)
+2. **plan** — `plan.md` (`.specify/scripts/bash/setup-plan.sh`)
+3. **tasks** — `tasks.md` (before implementation; Constitution III)
+4. Implement only with task IDs; never `terraform apply` without explicit human approval.
+
+## Monthly security audit
+
+Check `progress.ai` for a monthly vulnerability audit entry within the last 30 days. Terraform-only repos: note skip rationale when no npm/Java roots.
+
+## How to update progress.ai
+
+Format: `YYYY-MM-DD-HH:mm Update – Brief Description:` followed by bullet points.
+Include key decisions, file paths, test/plan results, and deployment notes.
+
+## Before long processes
+
+1. Output a multi-step plan with success criteria per step.
+2. After each step, show what changed and any errors.
+3. Ask whether to continue before the next major step.
+
+Never run `terraform apply` without explicit human approval.

@@ -1,0 +1,19 @@
+# Credentials — never commit
+tu.keys
+*.keys
+!tu.keys.example
+*.pem
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+**/tfplan
+*.tfplan
+aws/backend.tf
+config/backend.hcl
+aws/terraform.tfvars
+
+# Logs / cache
+*.log
+__pycache__/

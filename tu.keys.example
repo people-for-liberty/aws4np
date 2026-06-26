@@ -1,0 +1,15 @@
+# Copy to tu.keys at the repo root (gitignored). Fill in from IAM → Users → Security credentials.
+#
+#   cp tu.keys.example tu.keys
+#   chmod 600 tu.keys
+#
+# Use a dedicated IAM user with least privilege (start with ReadOnly for planning;
+# scoped PowerUser or custom policy for applies). Enable MFA on the root account;
+# do not use root access keys.
+
+Access key: AKIA........................
+Secret access key: ........................................
+
+# Optional: note your expected account for human verification
+# AWS account ID: 123456789012
+# Organization:   Your 501(c)(3) Name
