@@ -1,4 +1,15 @@
 2026-06-26-09:45 Update - aws4np template repository created:
-- Public scaffold for 501(c)(3) AWS/Terraform adoption: speckit (`.specify/`), `start.ai`, `progress.ai`, `tu.keys.example`, `scripts/load-aws-env.sh`.
+- Public scaffold for 501(c)(3) AWS/Terraform adoption: speckit (`.specify/`), `start.ai`, `AGENTS.md`, `progress.ai`, `setup/`, `scripts/load-aws-env.sh`.
 - Minimal `aws/` stack with parameterized remote state (`backend_state.tf`); backend config via `config/backend.hcl` (gitignored).
-- Spec `001-repo-scaffold` documents first-time bootstrap. Fork from [aws4np](https://github.com/people-for-liberty/aws4np).
+- Spec `001` overview; specs `002`–`003` reference + §3–§4 training. Fork from [aws4np](https://github.com/people-for-liberty/aws4np).
+
+2026-06-26 Update - Onboarding gates documented:
+- `start.ai` §0–3: fork + VS Code/AI, speckit CLI, `.secrets/tu.keys`, first speckit training (Terraform connect).
+- `scripts/check-session-prereqs.sh`: fork, speckit, AWS STS, bootstrap-phase terraform checks; `AWS4NP_ALLOW_UPSTREAM=1` for template maintainers.
+- `scripts/bootstrap-remote-state.sh --yes` after operator approves bucket/table names in chat.
+
+2026-06-26 Update - Reference spec 002 added:
+- `specs/002-terraform-aws-connect/` (spec/plan/tasks) for §3 Terraform training; aligns with 001 overview and 003 WordPress.
+
+2026-06-26 Update - WordPress second training (start.ai §4):
+- `setup/speckitSecondTrainingWordPress.md`, reference `specs/003-wordpress-lightsail/`, starter `aws/lightsail_wordpress.tf` with `enable_wordpress_lightsail` flag.

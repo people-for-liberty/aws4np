@@ -1,3 +1,8 @@
 org_slug       = "your-org-short-name"
 aws_account_id = "123456789012"
 region         = "us-east-1"
+
+# Spec 003 — WordPress on Lightsail (start.ai §4 training)
+# enable_wordpress_lightsail = true
+# lightsail_wordpress_blueprint_id = "wordpress"  # verify: aws lightsail get-blueprints
+# lightsail_wordpress_bundle_id   = "small_3_0"

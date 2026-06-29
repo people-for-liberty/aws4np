@@ -4,11 +4,11 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
-keys_file="${AWS_KEYS_FILE:-$repo_root/tu.keys}"
+keys_file="${AWS_KEYS_FILE:-$repo_root/.secrets/tu.keys}"
 
 if [[ ! -f "$keys_file" ]]; then
   echo "ERROR: Keys file not found: $keys_file" >&2
-  echo "Copy tu.keys.example to tu.keys and add your IAM access key." >&2
+  echo "Follow setup/installAwsCredentials.md — create .secrets/tu.keys from .secrets/tu.keys.example." >&2
   exit 1
 fi
 

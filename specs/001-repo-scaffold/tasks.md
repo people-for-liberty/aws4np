@@ -1,21 +1,17 @@
-# Tasks: Repository scaffold (spec 001)
+# Tasks: Repository scaffold (spec 001 — reference only)
 
-## Phase 1: Setup
+Overview checklist for bootstrap. **Gates 0–2** are session prereqs; **§3 training** is executed from [`specs/002-terraform-aws-connect/tasks.md`](../002-terraform-aws-connect/tasks.md).
 
-- [ ] T001 Copy `tu.keys.example` → `tu.keys`; add IAM access key; `chmod 600 tu.keys`
-- [ ] T002 Run `eval "$(scripts/load-aws-env.sh)"` and `aws sts get-caller-identity`
-- [ ] T003 Run `scripts/check-session-prereqs.sh`
+## Phase 1: Session gates (`start.ai` §0–2)
 
-## Phase 2: Remote state
+- [x] T001 Fork to org GitHub; VS Code + AI; clone with correct `origin` — `setup/forkAndWorkspace.md`
+- [x] T002 Speckit CLI installed — `setup/installSpeckit.md`
+- [x] T003 `.secrets/tu.keys`, AWS CLI, `aws sts get-caller-identity` — `setup/installAwsCredentials.md`
 
-- [ ] T004 Set `ORG_SLUG`; run `scripts/bootstrap-remote-state.sh`
-- [ ] T005 Copy `config/backend.hcl.example` → `config/backend.hcl` (gitignored)
-- [ ] T006 Copy `aws/terraform.tfvars.example` → `aws/terraform.tfvars` (gitignored)
+## Phase 2–3: Terraform connect (`start.ai` §3 → spec 002)
 
-## Phase 3: Terraform gate
+See **[spec 002 tasks](../002-terraform-aws-connect/tasks.md)**.
 
-- [ ] T007 `terraform -chdir=aws init -backend-config=../config/backend.hcl`
-- [ ] T008 `terraform -chdir=aws validate`
-- [ ] T009 `terraform -chdir=aws plan` — review output
-- [ ] T010 `terraform apply` — **explicit human approval only**
-- [ ] T011 Update `progress.ai` with account ID, bucket name, plan/apply results
+## Phase 4: WordPress (`start.ai` §4 → spec 003)
+
+See **[spec 003 tasks](../003-wordpress-lightsail/tasks.md)**.

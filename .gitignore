@@ -1,7 +1,7 @@
 # Credentials — never commit
-tu.keys
+.secrets/*
+!.secrets/tu.keys.example
 *.keys
-!tu.keys.example
 *.pem
 
 # Terraform

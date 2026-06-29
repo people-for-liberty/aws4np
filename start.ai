@@ -1,25 +1,108 @@
+# Session bootstrap — run at the start of every session
+
+**AI agents:** also read `AGENTS.md`. Humans: open this file in chat each session.
+
+This repo helps **501(c)(3) nonprofits** move digital infrastructure to AWS and maintain it with Terraform. Assume the operator has some 
+technical ability but may be new to AWS and GitHub.
+
+You are an AI digital assistant who is an expert at AWS and Terraform.  You are non-denominational, so regardless what flavor of 
+AI (Claude, OpenAI, Cursor etc) you are, you store and reference information in non-proprietary locations. 
+
+## 0. Fork and workspace gate (required first)
+
+Before any tooling or cloud work, confirm the nonprofit **owns its own copy** of this project under version control:
+
+1. **GitHub fork:** They should have forked (or used **Use this template** to create) a repo under **their** GitHub org or account — not be editing a transient clone of the public template alone. See README **Getting started** for why this matters.
+2. **Local clone:** Working directory is a git repo whose `origin` remote points at **their** fork (`git remote -v`).
+3. **Editor + AI assistant:** VS Code is installed with an **AI coding extension** (see below). On **Windows**, the repo must be cloned and opened **inside WSL** (VS Code + WSL extension, `code .` from the WSL clone). See `setup/forkAndWorkspace.md`.
+4. **First chat in VS Code:** They can open `start.ai` and ask their AI to follow it — that is how every session begins.
+5. **If any check fails:** walk through `setup/forkAndWorkspace.md` step by step. Do not install Speckit, AWS credentials, or Terraform until they have their own fork cloned, open in VS Code, and an AI assistant working in that window.
+6. Upstream template URLs (e.g. `people-for-liberty/aws4np`) must **not** be the only remote they push to — their org’s repo is the system of record.
+
+## 1. Speckit CLI gate (required second)
+
+Install and verify the [GitHub Spec Kit](https://github.com/github/spec-kit) CLI now. Hands-on workflow training is **§3** (Terraform) and **§4** (WordPress). This gate only confirms the tooling is present.
+
+Before other setup, confirm Spec Kit is usable:
+
+1. Run `scripts/check-session-prereqs.sh` (includes speckit checks) **or** manually:
+   - `command -v specify` — CLI must be on PATH
+   - `specify version` or `specify check` — CLI must run
+   - `test -d .specify` — repo templates already present
+2. **If any check fails:** follow `setup/installSpeckit.md` step by step with the user. Install Python 3.11+, [uv](https://github.com/github/spec-kit/blob/main/docs/install/uv.md), then `specify-cli` via `uv tool install`. Explain each step in plain language.
+3. **Do not run `specify init`.** This template ships with `.specify/` committed; init is for greenfield projects only.
+4. Do not proceed to AWS/Terraform work until the speckit gate passes.
+
+## 2. AWS credentials gate (required third)
+
+Before Terraform or other AWS work, confirm local credentials exist and work:
+
+1. Run `scripts/check-session-prereqs.sh` (includes AWS checks) **or** manually:
+   - `test -d .secrets` — secrets folder must exist
+   - `test -f .secrets/tu.keys` — keys file must exist (gitignored)
+   - `command -v aws` — AWS CLI must be installed once keys exist
+   - `eval "$(scripts/load-aws-env.sh)"` then `aws sts get-caller-identity` — must succeed
+2. **If any check fails:** follow `setup/installAwsCredentials.md` step by step with the user. Cover:
+   - Creating an AWS account (org email, root MFA)
+   - IAM group **`terraformers`** with AWS managed **`PowerUserAccess`**
+   - IAM user **`aws_assistant`** (or a name they prefer) in that group
+   - Creating access keys and saving them in **`.secrets/tu.keys`** (from `.secrets/tu.keys.example`)
+   - Installing AWS CLI if needed, then validating with `aws sts get-caller-identity`
+3. Never ask the user to paste secret keys into chat. Never commit `.secrets/tu.keys`.
+4. Do not proceed until this gate passes.
+
+## 3. First speckit training — connect Terraform to AWS (required fourth)
+
+**This replaces a separate “install Terraform” checklist.** Terraform install, remote state, init, and first `plan` are learned by doing — under speckit, GitHub, and the constitution. Field tests show that with guided training, even newcomers work efficiently and safely.
+
+Prerequisites: gates 0–2 must pass.
+
+1. Give the operator the training prompt from `setup/speckitFirstTraining.md` (or have them ask their AI to read that file).
+2. The AI should: checkout branch `002-terraform-aws-connect`, use reference `specs/002-terraform-aws-connect/`, complete plan and tasks, guide the operator task-by-task (Terraform install, `ORG_SLUG`, remote state bootstrap via `scripts/bootstrap-remote-state.sh`, `backend.hcl` / `terraform.tfvars`, `init` / `validate` / `plan`), then help **commit, push, PR, and merge to `main`**. Use `bootstrap-remote-state.sh --yes` only after the operator explicitly approves the bucket/table names in chat.
+3. **Never `terraform apply`** without explicit human approval after a reviewed plan.
+4. **Debrief required:** AI explains in plain language what branch, spec, state, plan, and merge mean for the organization (`setup/speckitFirstTraining.md` checklist).
+5. Clarify for new AWS accounts: “state” means **establishing** Terraform remote state — not importing an existing legacy stack (that is a later spec).
+
+Do not skip to other application work until §4 is complete or an equivalent spec `003` is merged to `main`.
+
+## 4. Second speckit training — WordPress on Lightsail (required fifth)
+
+Same learn-by-doing pattern as §3, applied to a **real workload**. Prerequisites: spec `002` merged, `terraform init`/`validate` work on `main`.
+
+1. Give the operator the training prompt from `setup/speckitSecondTrainingWordPress.md`.
+2. Branch `003-wordpress-lightsail`; use reference `specs/003-wordpress-lightsail/` and starter `aws/lightsail_wordpress.tf` (`enable_wordpress_lightsail = true` in `terraform.tfvars` after blueprint lookup).
+3. Guide through `fmt` / `validate` / `plan`; **never `apply`** without explicit approval after plan review.
+4. After apply: operator retrieves WordPress admin password via AWS (never commit or paste into chat).
+5. **Debrief required** — WordPress, static IP, state, PR merge (`setup/speckitSecondTrainingWordPress.md` checklist).
+
+**Next steps:** [docs/where-to-go-from-here.md](docs/where-to-go-from-here.md) — Route53, SES, WordPress migration.
+
+## 5. Ongoing session prereqs
+
 Review `.specify/memory/constitution.md` and honor repo-specific workflow rules there.
-At the start of every session, run `scripts/check-session-prereqs.sh` (or document bypass with user approval).
+
+Run `scripts/check-session-prereqs.sh` (or document bypass with user approval).
+
 Run `terraform -chdir=aws plan -input=false -detailed-exitcode` to confirm no unexpected drift before discretionary work.
+
 Review `progress.ai` and active spec/tasks; confirm branch before implementing.
+
 Continuously update `progress.ai` with decisions, validation results, and outcomes.
+
 Load AWS credentials before any AWS/Terraform work: `eval "$(scripts/load-aws-env.sh)"`.
-Verify account with `aws sts get-caller-identity` — must match **your** nonprofit account (set expected ID in `tu.keys` or team docs).
 
-## Credentials (tu.keys)
+Verify account with `aws sts get-caller-identity` — must match **your** nonprofit account (note expected ID in `.secrets/tu.keys` or team docs).
 
-1. Copy `tu.keys.example` → `tu.keys` (gitignored).
-2. Add IAM access key for a **dedicated nonprofit user** (not root).
-3. Load: `eval "$(scripts/load-aws-env.sh)"` or `AWS_KEYS_FILE=/path/to/tu.keys eval "$(scripts/load-aws-env.sh)"`.
+## 6. Speckit workflow (ongoing)
 
-## Speckit workflow
+After training (§3–§4), use this pattern for every feature:
 
 1. **spec** — `specs/###-feature/spec.md` (`.specify/scripts/bash/create-new-feature.sh`)
 2. **plan** — `plan.md` (`.specify/scripts/bash/setup-plan.sh`)
 3. **tasks** — `tasks.md` (before implementation; Constitution III)
 4. Implement only with task IDs; never `terraform apply` without explicit human approval.
 
-## Monthly security audit
+## 7. Monthly security audit
 
 Check `progress.ai` for a monthly vulnerability audit entry within the last 30 days. Terraform-only repos: note skip rationale when no npm/Java roots.
 

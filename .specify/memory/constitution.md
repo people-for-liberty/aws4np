@@ -9,7 +9,7 @@ Infrastructure changes MUST avoid destructive actions. Always plan before apply,
 Do not manipulate AWS infrastructure directly (console/CLI) unless strictly necessary for recovery or emergency triage. Emergency out-of-band changes must be codified back into Terraform immediately.
 
 ### II. Secrets & Access Hygiene
-Keep cloud credentials (`tu.keys`, PEM files) out of git and logs. Use `scripts/load-aws-env.sh` for local sessions; never commit secrets.
+Keep cloud credentials (`.secrets/tu.keys`, PEM files) out of git and logs. Use `scripts/load-aws-env.sh` for local sessions; never commit secrets.
 
 ### III. Spec-Driven Delivery
 Every change maps to a speckit spec/task ID before implementation. Number specs sequentially from **001** in this repository.

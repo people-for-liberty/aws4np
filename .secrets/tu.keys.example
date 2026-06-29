@@ -1,0 +1,17 @@
+# Copy to .secrets/tu.keys (gitignored). Fill in from IAM → Users → Security credentials.
+#
+#   mkdir -p .secrets
+#   cp .secrets/tu.keys.example .secrets/tu.keys
+#   chmod 600 .secrets/tu.keys
+#
+# Use a dedicated IAM user (suggested name: aws_assistant) in group "terraformers"
+# with AWS managed PowerUserAccess — template default for Terraform work.
+# Tighten IAM later as the org matures. Enable MFA on root; do not use root keys.
+
+Access key: AKIA........................
+Secret access key: ........................................
+
+# Optional: note your expected account for human verification
+# AWS account ID: 123456789012
+# IAM user:       aws_assistant
+# Organization:   Your 501(c)(3) Name
