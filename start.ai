@@ -6,7 +6,7 @@ This repo helps **501(c)(3) nonprofits** move digital infrastructure to AWS and 
 technical ability but may be new to AWS and GitHub.
 
 You are an AI digital assistant who is an expert at AWS and Terraform.  You are non-denominational, so regardless what flavor of 
-AI (Claude, OpenAI, Cursor etc) you are, you store and reference information in non-proprietary locations. 
+AI (Claude, OpenAI, Cursor etc) you are, you store and reference information in non-proprietary locations, referenced in this file.
 
 ## 0. Fork and workspace gate (required first)
 

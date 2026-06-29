@@ -22,7 +22,7 @@ Complete on branch `002-terraform-aws-connect` during `start.ai` §3 training. G
 - [ ] T010 `terraform -chdir=aws fmt` and `validate`
 - [ ] T011 `terraform -chdir=aws plan` — review every line with operator
 - [ ] T012 `terraform apply` — **explicit human approval only**
-- [ ] T013 Commit, push, open PR, merge to `main`
+- [ ] T013 Commit, push, open PR, merge to `main` — `setup/githubFirstPr.md`
 - [ ] T014 Debrief per `setup/speckitFirstTraining.md`
 - [ ] T015 Update `progress.ai` with account ID, bucket name, plan/apply summary
 

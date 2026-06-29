@@ -26,7 +26,7 @@ Complete on branch `003-wordpress-lightsail` during `start.ai` §4 training. Che
 
 ## Phase 4: Merge and traceability
 
-- [ ] T014 Commit, push, open PR, merge to `main`
+- [ ] T014 Commit, push, open PR, merge to `main` — `setup/githubFirstPr.md`
 - [ ] T015 Debrief per `setup/speckitSecondTrainingWordPress.md`
 - [ ] T016 Update `progress.ai`
 

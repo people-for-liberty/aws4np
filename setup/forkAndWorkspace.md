@@ -126,7 +126,7 @@ Proceed to **start.ai §1** (Speckit) only after fork + clone + VS Code + AI ass
 | Problem | Fix |
 |---------|-----|
 | `origin` still shows upstream template | Fork if needed, then `git remote set-url origin …` |
-| `git push` permission denied | Add SSH key to GitHub ([docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)) or use HTTPS with a personal access token |
+| `git push` permission denied | Add SSH key to GitHub — [githubFirstPr.md](./githubFirstPr.md) |
 | `code: command not found` in WSL | In VS Code: Command Palette → “WSL: Install VS Code Server” or reinstall VS Code with “Add to PATH” |
 | Cursor instead of VS Code | Cursor is VS Code–compatible; same WSL workflow applies — open the cloned folder from WSL; built-in agent replaces Copilot/Continue |
 | AI cannot see project files | **File → Open Folder** on repo root; avoid opening only `start.ai` in isolation |

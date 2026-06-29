@@ -34,5 +34,5 @@ Reference plan for first speckit training. Flesh out during `setup/speckitFirstT
 
 ## Notes
 
-- Bootstrap script may create resources before Terraform manages them — `backend_state.tf` aligns Terraform state with reality after apply.
+- Bootstrap script may create S3/DynamoDB before Terraform manages them — use **`terraform import`** or document skip; see `setup/speckitFirstTraining.md` (bootstrap vs `backend_state.tf`).
 - “Pull down state” for new accounts means **establishing** remote state, not importing a legacy stack.

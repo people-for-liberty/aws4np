@@ -24,7 +24,7 @@ resource "aws_lightsail_static_ip_attachment" "wordpress" {
 
 resource "aws_lightsail_instance_public_ports" "wordpress" {
   count         = var.enable_wordpress_lightsail ? 1 : 0
-  instance_name = aws_lightsail_instance.wordpress[0].id
+  instance_name = aws_lightsail_instance.wordpress[0].name
 
   port_info {
     protocol  = "tcp"

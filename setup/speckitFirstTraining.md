@@ -74,11 +74,22 @@ Using speckit, GitHub, and our constitution, make a branch and spec to connect T
 
 ### GitHub finish
 
+Follow **`setup/githubFirstPr.md`** with the operator:
+
 - Commit on the feature branch with messages referencing spec ID (e.g. `002: add backend config for terraform init`).
 - `git push -u origin HEAD`
 - Open a PR to `main`; short description linking spec path.
 - After merge: checkout `main`, `git pull`.
 - **Debrief** (required) — see checklist below.
+
+### Bootstrap script vs `backend_state.tf`
+
+`scripts/bootstrap-remote-state.sh` creates the S3 bucket and DynamoDB table **first** so `terraform init` has a backend. Later, `terraform plan` for `backend_state.tf` may show those resources as **already existing**. With the operator:
+
+1. Prefer **`terraform import`** for each resource into state, **or**
+2. Skip apply for `backend_state.tf` until a follow-up task documents import — **do not** create duplicate buckets.
+
+Explain: the script is bootstrap; Terraform is the long-term source of truth once imported.
 
 ## Scope clarification: “pull down current state”
 

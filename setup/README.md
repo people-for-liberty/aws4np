@@ -11,7 +11,8 @@ Ordered walkthroughs for AI agents and operators. Match **`start.ai`** gate numb
 | 3 | §2 | [installAwsCredentials.md](./installAwsCredentials.md) | `.secrets/tu.keys`, AWS CLI, STS OK |
 | 4 | §3 | [speckitFirstTraining.md](./speckitFirstTraining.md) | Branch + spec 002, Terraform, remote state, init/plan, PR merge |
 | 5 | §4 | [speckitSecondTrainingWordPress.md](./speckitSecondTrainingWordPress.md) | Branch + spec 003, WordPress on Lightsail, plan/apply, PR merge |
-| — | (during §3) | [installTerraform.md](./installTerraform.md) | Terraform `>= 1.13` installed |
+| — | (during §3–§4) | [installTerraform.md](./installTerraform.md) | Terraform `>= 1.13` installed |
+| — | (during §3–§4) | [githubFirstPr.md](./githubFirstPr.md) | Branch, push, open PR, merge to `main` |
 
 ## Verify anytime
 

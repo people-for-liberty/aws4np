@@ -91,7 +91,7 @@ Use `specs/003-wordpress-lightsail/tasks.md` as checklist template; assign task 
 
 ### GitHub finish
 
-Same as §3 training: commit with `003:` prefix, push, PR, merge, debrief.
+Follow **`setup/githubFirstPr.md`**: commit with `003:` prefix, push, open PR, merge to `main`, `git pull`, debrief.
 
 ## Scope clarifications
 
