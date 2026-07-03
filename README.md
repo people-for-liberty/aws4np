@@ -1,4 +1,4 @@
-# aws4np  AWS for Non-profits  
+# AWS + AI for Non-profits.  Cut your costs, increase your effectiveness.  
 
 **Public template** for U.S. **501(c)(3)** organizations adopting AWS infrastructure with Terraform, speckit specs, and agent-friendly workflows.
 
