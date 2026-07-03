@@ -2,7 +2,40 @@
 
 **Public template** for U.S. **501(c)(3)** organizations adopting AWS infrastructure with Terraform, speckit specs, and agent-friendly workflows.
 
-Fork this repo to your organization’s GitHub, open it in VS Code with an AI assistant (WSL on Windows), and follow spec `001` to bootstrap.
+**Executive Directors / board members:** start with the next section. **Technical setup person:** jump to [Getting started](#getting-started).
+
+## How this saves you money
+
+*A note for Executive Directors and board members — no technical background needed.*
+
+Your nonprofit is probably paying for a website, maybe email tools, and possibly a consultant or agency to keep it all running. This project moves that infrastructure to Amazon Web Services (AWS) in a way that is **nearly free to run** and **doesn’t depend on any one person**.
+
+### Amazon gives nonprofits $1,000 a year — most orgs never claim it
+
+Through the [AWS Nonprofit Credit Program](https://aws.amazon.com/government-education/nonprofits/nonprofit-credit-program/), 501(c)(3) organizations with budgets under $10 million can receive **$1,000 in AWS credits every year** through [TechSoup](https://page.techsoup.org/aws) (for a $95 admin fee; mid-size and large nonprofits qualify for $2,000–$5,000). The credit renews each fiscal year.
+
+Here is why that matters: a nonprofit website hosted the way this template sets it up costs roughly **$150–$300 a year** in AWS charges — website server, domain routing, and email delivery combined. **The annual credit covers all of it**, usually with room to spare. Compare that to typical managed WordPress hosting at $300–$700+ a year in cash, before anyone touches it to make a change.
+
+| | Typical setup | This template |
+|---|---|---|
+| Website hosting | $300–$700+/yr cash | ~$150–$300/yr, covered by credits |
+| Making changes | Billed hourly by an agency | You + an AI assistant, following written procedures |
+| If your tech person leaves | Scramble; knowledge walks out the door | Everything is written down in your own files |
+| Surprise costs | Common | Every change is previewed and approved before it spends money |
+
+### Why Terraform is the other half of the win
+
+Terraform is a tool that keeps your entire infrastructure **written down as plain files** your organization owns — like having the blueprints to your building instead of just a landlord’s phone number.
+
+For an ED, that means:
+
+- **No key-person risk.** When a volunteer or staff member moves on, the next person (or an AI assistant) reads the files and picks up exactly where they left off. Nothing lives only in someone’s head.
+- **No consultant lock-in.** Any competent technical person can read a Terraform file. You are never held hostage by the one agency that “knows how the site works.”
+- **No surprise bills.** Terraform shows a preview (“here is exactly what will change and what it will create”) before anything happens, and this template requires a human to approve every change. Nothing spends money without sign-off.
+- **An audit trail your board will love.** Every change to your infrastructure is recorded: who made it, when, and why. That is accountability most small nonprofits’ IT has never had.
+- **Disaster recovery.** If something breaks — or is broken — your entire setup can be rebuilt from the files in hours, not weeks.
+
+The rest of this document is for the technically-inclined person (staff, volunteer, or board member) who will do the setup with an AI assistant guiding them. Budget a few sessions over a week or two; after that, upkeep is minimal.
 
 ## What you get
 
